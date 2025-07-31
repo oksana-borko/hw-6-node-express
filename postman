@@ -1,0 +1,109 @@
+{
+  "info": {
+    "name": "Users and Posts API",
+    "_postman_id": "11111111-1111-1111-1111-111111111111",
+    "description": "API для работы с пользователями и постами",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get all posts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3005/api/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3005",
+          "path": ["api", "posts"]
+        }
+      }
+    },
+    {
+      "name": "Get post by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3005/api/posts?postId=1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3005",
+          "path": ["api", "posts"],
+          "query": [{ "key": "postId", "value": "1" }]
+        }
+      }
+    },
+    {
+      "name": "Add post",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"1\",\n  \"userId\": \"123\",\n  \"title\": \"First post\",\n  \"text\": \"Hello world!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3005/api/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3005",
+          "path": ["api", "posts"]
+        }
+      }
+    },
+    {
+      "name": "Update post",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"1\",\n  \"userId\": \"123\",\n  \"title\": \"Updated title\",\n  \"text\": \"Updated text\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3005/api/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3005",
+          "path": ["api", "posts"]
+        }
+      }
+    },
+    {
+      "name": "Delete post",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3005/api/posts?postId=1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3005",
+          "path": ["api", "posts"],
+          "query": [{ "key": "postId", "value": "1" }]
+        }
+      }
+    },
+    {
+      "name": "Get posts by username",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3005/api/posts/user?userName=Gumburg",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3005",
+          "path": ["api", "posts", "user"],
+          "query": [{ "key": "userName", "value": "Gumburg" }]
+        }
+      }
+    }
+  ]
+}
