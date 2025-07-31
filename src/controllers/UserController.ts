@@ -1,5 +1,5 @@
-import {UserService} from "../services/UserService.ts";
-import {isUserType, parseBody} from "../utils/tools.ts";
+import {UserService} from "../services/UserService.js";
+import {isUserType, parseBody} from "../utils/tools.js";
 import {User} from "../model/userTypes.ts";
 import {IncomingMessage, ServerResponse} from "node:http";
 import {baseUrl} from "../config/userServerConfig.js";

@@ -2,7 +2,7 @@ import {UserService} from "./UserService.js";
 import {User} from "../model/userTypes.js";
 import {UserFilePersistenceService} from "./UserFilePersistenceService.js";
 import fs from "fs";
-import {myLogger} from "../utils/logger.ts";
+import {myLogger} from "../utils/logger.js";
 
 export  class UserServiceEmbeddedImpl implements UserService, UserFilePersistenceService{
     private users: User[] = [];
