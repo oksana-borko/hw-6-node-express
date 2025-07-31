@@ -2,8 +2,8 @@ import {UserService} from "../services/UserService.ts";
 import {isUserType, parseBody} from "../utils/tools.ts";
 import {User} from "../model/userTypes.ts";
 import {IncomingMessage, ServerResponse} from "node:http";
-import {baseUrl} from "../config/userServerConfig.ts";
-import {myLogger} from "../utils/logger.ts";
+import {baseUrl} from "../config/userServerConfig.js";
+import {myLogger} from "../utils/logger.js";
 
 export class UserController{
     constructor(private userService: UserService) { }

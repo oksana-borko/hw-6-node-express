@@ -1,4 +1,4 @@
-import { Post } from "../model/postTypes";
+import { Post } from "../model/postTypes.js";
 
 export interface PostService {
   getAllPosts(): Post[];

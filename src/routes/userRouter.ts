@@ -1,5 +1,5 @@
 import express from "express";
-import {userController} from "../server.ts";
+import {userController} from "../server.js";
 
 export const userRouter = express.Router()
 // api/users?id=122

@@ -1,6 +1,6 @@
-import { Post } from "../model/postTypes";
-import { PostService } from "./PostService";
-import { UserService } from "./UserService";
+import { Post } from "../model/postTypes.js";
+import { PostService } from "./PostService.js";
+import { UserService } from "./UserService.js";
 
 export class PostServiceEmbeddedImpl implements PostService {
   private posts: Post[] = [];

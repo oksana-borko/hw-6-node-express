@@ -1,10 +1,10 @@
 import express from 'express';
-import {apiRouter} from "./routes/appRouter.ts";
-import {UserService} from "./services/UserService.ts";
-import {UserServiceEmbeddedImpl} from "./services/UserServiceEmbeddedImpl.ts";
-import {UserController} from "./controllers/UserController.ts";
-import { PostServiceEmbeddedImpl } from "./services/PostServiceEmbeddedImpl";
-import { PostController } from "./controllers/PostController";
+import {apiRouter} from "./routes/appRouter.js";
+import {UserService} from "./services/UserService.js";
+import {UserServiceEmbeddedImpl} from "./services/UserServiceEmbeddedImpl.js";
+import {UserController} from "./controllers/UserController.js";
+import { PostServiceEmbeddedImpl } from "./services/PostServiceEmbeddedImpl.js";
+import { PostController } from "./controllers/PostController.js";
 
 export const service:UserService = new UserServiceEmbeddedImpl();
 export const userController = new UserController(service);

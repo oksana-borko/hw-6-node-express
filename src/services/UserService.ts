@@ -1,4 +1,4 @@
-import {User} from "../model/userTypes.ts";
+import {User} from "../model/userTypes.js";
 
 export interface UserService {
     addUser(user:User):boolean;

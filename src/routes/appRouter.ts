@@ -1,7 +1,7 @@
 import express from 'express'
-import {userRouter} from "./userRouter.ts";
-import {loggerRouter} from "./loggerRouter.ts";
-import { postRouter } from "./postRouter";
+import {userRouter} from "./userRouter.js";
+import {loggerRouter} from "./loggerRouter.js";
+import { postRouter } from "./postRouter.js";
 
 
 export const apiRouter = express.Router();

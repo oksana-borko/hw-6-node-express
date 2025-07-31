@@ -1,0 +1,42 @@
+{
+  "info": {
+    "name": "Users and Posts API",
+    "_postman_id": "12345678-abcd-1234-abcd-1234567890ab",
+    "description": "Collection to test all endpoints for Users and Posts",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    { "name": "Get all users", "request": { "method": "GET", "url": "http://localhost:3005/api/users" } },
+    { "name": "Get user by id", "request": { "method": "GET", "url": "http://localhost:3005/api/users?id=123" } },
+    { "name": "Add user", "request": {
+      "method": "POST",
+      "header": [{"key":"Content-Type","value":"application/json"}],
+      "body": {"mode":"raw","raw":"{\n  \"id\": 999,\n  \"userName\": \"Alice\"\n}"},
+      "url": "http://localhost:3005/api/users"
+    }},
+    { "name": "Update user", "request": {
+      "method": "PUT",
+      "header": [{"key":"Content-Type","value":"application/json"}],
+      "body": {"mode":"raw","raw":"{\n  \"id\": 999,\n  \"userName\": \"AliceUpdated\"\n}"},
+      "url": "http://localhost:3005/api/users"
+    }},
+    { "name": "Delete user", "request": { "method": "DELETE", "url": "http://localhost:3005/api/users?id=999" } },
+
+    { "name": "Get all posts", "request": { "method": "GET", "url": "http://localhost:3005/api/posts" } },
+    { "name": "Add post", "request": {
+      "method": "POST",
+      "header": [{"key":"Content-Type","value":"application/json"}],
+      "body": {"mode":"raw","raw":"{\n  \"id\": \"1\",\n  \"userId\": \"123\",\n  \"title\": \"My first post\",\n  \"text\": \"Hello world\"\n}"},
+      "url": "http://localhost:3005/api/posts"
+    }},
+    { "name": "Get post by id", "request": { "method": "GET", "url": "http://localhost:3005/api/posts?postId=1" } },
+    { "name": "Update post", "request": {
+      "method": "PUT",
+      "header": [{"key":"Content-Type","value":"application/json"}],
+      "body": {"mode":"raw","raw":"{\n  \"id\": \"1\",\n  \"userId\": \"123\",\n  \"title\": \"Updated title\",\n  \"text\": \"Updated text\"\n}"},
+      "url": "http://localhost:3005/api/posts"
+    }},
+    { "name": "Get posts by username", "request": { "method": "GET", "url": "http://localhost:3005/api/posts/user?userName=Panikovsky" } },
+    { "name": "Delete post", "request": { "method": "DELETE", "url": "http://localhost:3005/api/posts?postId=1" } }
+  ]
+}

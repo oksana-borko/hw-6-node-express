@@ -1,3 +1,3 @@
-import {launchServer} from "./server.ts";
+import {launchServer} from "./server.js";
 
 launchServer();

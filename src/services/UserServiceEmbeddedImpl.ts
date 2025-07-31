@@ -1,6 +1,6 @@
-import {UserService} from "./UserService.ts";
-import {User} from "../model/userTypes.ts";
-import {UserFilePersistenceService} from "./UserFilePersistenceService.ts";
+import {UserService} from "./UserService.js";
+import {User} from "../model/userTypes.js";
+import {UserFilePersistenceService} from "./UserFilePersistenceService.js";
 import fs from "fs";
 import {myLogger} from "../utils/logger.ts";
 

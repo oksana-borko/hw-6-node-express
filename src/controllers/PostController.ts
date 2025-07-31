@@ -1,8 +1,8 @@
 import { IncomingMessage, ServerResponse } from "node:http";
-import { PostService } from "../services/PostService";
-import { parseBody } from "../utils/tools";
-import { baseUrl } from "../config/userServerConfig";
-import { Post } from "../model/postTypes";
+import { PostService } from "../services/PostService.js";
+import { parseBody } from "../utils/tools.js";
+import { baseUrl } from "../config/userServerConfig.js";
+import { Post } from "../model/postTypes.js";
 
 export class PostController {
   constructor(private postService: PostService) {}
