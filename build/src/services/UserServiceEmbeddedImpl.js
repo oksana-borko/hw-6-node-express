@@ -41,7 +41,7 @@ export class UserServiceEmbeddedImpl {
     updateUser(newUser) {
         const index = this.users.findIndex(item => item.id === newUser.id);
         if (index === -1)
-            throw "404";
+            throw new Error("404");
         this.users[index] = newUser;
     }
     restoreDataFromFile() {
@@ -76,7 +76,7 @@ export class UserServiceEmbeddedImpl {
                 this.rs.on('error', (err) => {
                     this.users = [{ id: 2, userName: "Bender" }];
                     myLogger.log("File to restore not found or read error: " + err.message);
-                    resolve("Recovered with fallback after read error");
+                    reject(new Error("Error reading from file: " + err.message));
                 });
             });
         });

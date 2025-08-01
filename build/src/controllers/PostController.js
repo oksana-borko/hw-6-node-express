@@ -44,6 +44,18 @@ export class PostController {
             }
         });
     }
+    updatePost(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const body = yield parseBody(req);
+            try {
+                this.postService.updatePost(body);
+                res.writeHead(200).end("Updated");
+            }
+            catch (e) {
+                res.writeHead(404).end("Post not found");
+            }
+        });
+    }
     removePost(req, res) {
         const url = new URL(req.url, baseUrl);
         const postId = url.searchParams.get("postId");
@@ -59,18 +71,6 @@ export class PostController {
         catch (e) {
             res.writeHead(404).end("Post not found");
         }
-    }
-    updatePost(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const body = yield parseBody(req);
-            try {
-                this.postService.updatePost(body);
-                res.writeHead(200).end("Updated");
-            }
-            catch (e) {
-                res.writeHead(404).end("Post not found");
-            }
-        });
     }
     getPostsByUserName(req, res) {
         const url = new URL(req.url, baseUrl);

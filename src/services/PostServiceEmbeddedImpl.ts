@@ -41,7 +41,7 @@ export class PostServiceEmbeddedImpl implements PostService {
 
   getPostsByUserName(userName: string): Post[] {
     const user = this.userService.getAllUsers()
-      .find(u => u.userName === userName);
+        .find(u => u.userName === userName);
     if (!user) throw "404";
     return this.posts.filter(p => p.userId === String(user.id));
   }

@@ -37,48 +37,49 @@ export  class UserServiceEmbeddedImpl implements UserService, UserFilePersistenc
 
     updateUser(newUser: User): void {
         const index = this.users.findIndex(item => item.id === newUser.id);
-        if(index === -1) throw "404";
+      if (index === -1) throw new Error("404");
         this.users[index] = newUser;
     }
 
-    async restoreDataFromFile(): Promise<string> {
-        return new Promise((resolve, reject) => {
-            let result = "";
+  async restoreDataFromFile(): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      let result = "";
 
-            this.rs.on('data', (chunk) => {
-                if (chunk) {
-                    console.log("Got chunk");
-                    result += chunk.toString();
-                }
-            });
+      this.rs.on('data', (chunk) => {
+        if (chunk) {
+          console.log("Got chunk");
+          result += chunk.toString();
+        }
+      });
 
-            this.rs.on('end', () => {
-                try {
-                    if (result) {
-                        this.users = JSON.parse(result);
-                        myLogger.log("Data was restored from file");
-                        myLogger.save("Data was restored from file");
-                    } else {
-                        this.users = [{ id: 123, userName: "Panikovsky" }];
-                    }
-                    this.rs.close();
-                    resolve("Ok");
-                } catch (e) {
-                    myLogger.log("JSON parse error: " + (e as Error).message);
-                    this.users = [{ id: 456, userName: "ParserErrorFallback" }];
-                    resolve("Recovered with fallback after parse error");
-                }
-            });
+      this.rs.on('end', () => {
+        try {
+          if (result) {
+            this.users = JSON.parse(result);
+            myLogger.log("Data was restored from file");
+            myLogger.save("Data was restored from file");
+          } else {
+            this.users = [{ id: 123, userName: "Panikovsky" }];
+          }
+          this.rs.close();
+          resolve("Ok");
+        } catch (e) {
+          myLogger.log("JSON parse error: " + (e as Error).message);
+          this.users = [{ id: 456, userName: "ParserErrorFallback" }];
+          resolve("Recovered with fallback after parse error");
+        }
+      });
 
-            this.rs.on('error', (err) => {
-                this.users = [{ id: 2, userName: "Bender" }];
-                myLogger.log("File to restore not found or read error: " + err.message);
-                resolve("Recovered with fallback after read error");
-            });
-        });
-    }
+      this.rs.on('error', (err) => {
+        this.users = [{ id: 2, userName: "Bender" }];
+        myLogger.log("File to restore not found or read error: " + err.message);
+        reject(new Error("Error reading from file: " + err.message));
+      });
+    });
+  }
 
-    async saveDataToFile(): Promise<string> {
+
+  async saveDataToFile(): Promise<string> {
         return new Promise((resolve, reject) => {
             const ws = fs.createWriteStream('data.txt', { flags: 'w' });
             myLogger.log("WriteStream created");

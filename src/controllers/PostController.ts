@@ -1,4 +1,4 @@
-import { IncomingMessage, ServerResponse } from "node:http";
+import { IncomingMessage, ServerResponse } from "http";
 import { PostService } from "../services/PostService.js";
 import { parseBody } from "../utils/tools.js";
 import { baseUrl } from "../config/userServerConfig.js";
@@ -26,12 +26,22 @@ export class PostController {
   }
 
   async addPost(req: IncomingMessage, res: ServerResponse) {
-    const body = await parseBody<Post>(req);
+    const body = await parseBody(req) as Post;
     const isSuccess = this.postService.addPost(body);
     if (isSuccess) {
       res.writeHead(201).end("Created");
     } else {
       res.writeHead(409).end("Post already exists");
+    }
+  }
+
+  async updatePost(req: IncomingMessage, res: ServerResponse) {
+    const body = await parseBody(req) as Post;
+    try {
+      this.postService.updatePost(body);
+      res.writeHead(200).end("Updated");
+    } catch (e) {
+      res.writeHead(404).end("Post not found");
     }
   }
 
@@ -46,16 +56,6 @@ export class PostController {
       const removed = this.postService.removePost(postId);
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(removed));
-    } catch (e) {
-      res.writeHead(404).end("Post not found");
-    }
-  }
-
-  async updatePost(req: IncomingMessage, res: ServerResponse) {
-    const body = await parseBody<Post>(req);
-    try {
-      this.postService.updatePost(body);
-      res.writeHead(200).end("Updated");
     } catch (e) {
       res.writeHead(404).end("Post not found");
     }

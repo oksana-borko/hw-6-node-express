@@ -10,16 +10,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import express from "express";
 import { userController } from "../server.js";
 export const userRouter = express.Router();
-// api/users?id=122
+// GET /api/users?id=122
 userRouter.get('/', (req, res) => {
     if (req.query.id)
         userController.getUserById(req, res);
     else
         userController.getAllUsers(req, res);
 });
+// POST /api/users
 userRouter.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield userController.addUser(req, res);
 }));
-// userRouter.get('/user', (req, res) => {
-//     userController.getUserById(req, res);
-// })
+// DELETE /api/users?id=122
+userRouter.delete('/', (req, res) => {
+    userController.removeUser(req, res);
+});
+// PUT /api/users
+userRouter.put('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    yield userController.updateUser(req, res);
+}));
